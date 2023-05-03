@@ -81,6 +81,6 @@ test:
 #
 production:
   <<: *default
-  database: mixer_production
+  database: mixer
   username: mixer
   password: <%= ENV["MIXER_DATABASE_PASSWORD"] %>
