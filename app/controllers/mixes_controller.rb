@@ -12,10 +12,7 @@ class MixesController < ApplicationController
   def show
     @mix = Mix.includes(:videos).find_by(slug: params[:slug])
     return not_found if @mix.blank?
-
-    @video_ids = @mix.videos.map do |video|
-      CGI::parse(URI::parse(video.url).query)['v'].first
-    end
+    @video_ids = @mix.videos.map(&:yt_video_id)
   end
 
   def create
@@ -24,7 +21,6 @@ class MixesController < ApplicationController
     if @mix.save
       redirect_to mix_path(slug: @mix.slug), notice: "Mix was successfully created."
     else
-      flash.alert = @mix.errors.to_sentence
       render :new, status: :unprocessable_entity
     end
   end

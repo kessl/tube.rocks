@@ -1,5 +1,7 @@
 new mix
 
+= @mix.errors.to_hash[:'videos.yt_video_id']&.to_sentence
+
 = form_with model: @mix do |form|
   %ul
     = form.fields_for :videos do |videos_form|

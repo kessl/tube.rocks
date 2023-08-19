@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_08_19_161604) do
+ActiveRecord::Schema[7.0].define(version: 2023_08_19_175728) do
   create_table "mixes", force: :cascade do |t|
     t.string "slug", null: false
     t.datetime "created_at", null: false
@@ -22,6 +22,8 @@ ActiveRecord::Schema[7.0].define(version: 2023_08_19_161604) do
     t.integer "mix_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "yt_video_id", null: false
+    t.integer "volume", default: 100, null: false
     t.index ["mix_id"], name: "index_videos_on_mix_id"
   end
 
