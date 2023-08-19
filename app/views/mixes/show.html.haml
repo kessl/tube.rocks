@@ -1,3 +1,10 @@
+- content_for :head do
+  = javascript_import_module_tag 'plyr_setup'
+  :javascript
+    window.cfg = { videoIds: #{@video_ids.to_json} }
+
 = @mix.id
 = @mix.slug
 = @mix.videos
+
+.js-players.mt-10.flex.justify-center.items-center.gap-5.flex-wrap{class: '[&_*]:w-[500px]'}

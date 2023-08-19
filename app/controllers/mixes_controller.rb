@@ -10,8 +10,12 @@ class MixesController < ApplicationController
   end
 
   def show
-    @mix = Mix.find_by(slug: params[:slug])
+    @mix = Mix.includes(:videos).find_by(slug: params[:slug])
     return not_found if @mix.blank?
+
+    @video_ids = @mix.videos.map do |video|
+      CGI::parse(URI::parse(video.url).query)['v'].first
+    end
   end
 
   def create
