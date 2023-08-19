@@ -1,5 +1,5 @@
-import { createIframes, createPlayers } from "./setup";
-import { registerEvents } from "./events";
+import { createIframes, createPlayers } from './setup'
+import { registerEvents } from './events'
 
 const testId = 'agarhXlrhnc'
 
