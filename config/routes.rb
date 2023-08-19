@@ -3,4 +3,7 @@ Rails.application.routes.draw do
 
   # Defines the root path route ("/")
   root "mixer#index"
+
+  resources :mixes, only: [:new, :index, :create]
+  get '/:slug', to: 'mixes#show', as: :mix
 end

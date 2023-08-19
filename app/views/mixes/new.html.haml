@@ -1,0 +1,10 @@
+new mix
+
+= form_with model: @mix do |form|
+  %ul
+    = form.fields_for :videos do |videos_form|
+      %li
+        Video
+        = videos_form.label :url
+        = videos_form.text_field :url
+  = form.submit 'Create mix'

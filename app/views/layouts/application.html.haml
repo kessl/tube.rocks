@@ -14,4 +14,6 @@
 
   %body
     %main.container.mx-auto.mt-28.px-5
+      = flash.each do |type, message|
+        #{type}: #{message}
       = yield
