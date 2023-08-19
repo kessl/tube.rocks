@@ -9,4 +9,7 @@ new mix
         Video
         = videos_form.label :url
         = videos_form.text_field :url
+
+        = videos_form.label :volume
+        = videos_form.range_field :volume, from: 1, to: 100
   = form.submit 'Create mix'

@@ -1,10 +1,14 @@
 - content_for :head do
   = javascript_import_module_tag 'plyr_setup'
   :javascript
-    window.cfg = { videoIds: #{@video_ids.to_json} }
+    window.cfg = { videos: #{@mix.videos.to_json} }
 
 = @mix.id
 = @mix.slug
-= @mix.videos
 
-.js-players.mt-10.flex.justify-center.items-center.gap-5.flex-wrap{class: '[&_*]:w-[500px]'}
+.mt-10.flex.justify-center.items-center.gap-5.flex-wrap
+  - @mix.videos.each do |video|
+    %div{class: 'w-[500px]'}
+      = video.yt_video_id
+      = video.volume
+      %div{id: "player-#{video.yt_video_id}"}

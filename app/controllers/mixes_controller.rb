@@ -12,7 +12,6 @@ class MixesController < ApplicationController
   def show
     @mix = Mix.includes(:videos).find_by(slug: params[:slug])
     return not_found if @mix.blank?
-    @video_ids = @mix.videos.map(&:yt_video_id)
   end
 
   def create
@@ -28,6 +27,6 @@ class MixesController < ApplicationController
   private
 
   def mix_params
-    params.require(:mix).permit(videos_attributes: [:url])
+    params.require(:mix).permit(videos_attributes: [:url, :volume])
   end
 end
