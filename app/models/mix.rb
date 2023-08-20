@@ -3,6 +3,8 @@ class Mix < ApplicationRecord
 
   accepts_nested_attributes_for :videos
 
+  validates :name, presence: true
+
   after_validation(on: :create) do
     self.slug = SecureRandom.alphanumeric(6).downcase
   end

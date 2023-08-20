@@ -1,8 +1,14 @@
 class MixesController < ApplicationController
 
   def new
-    @mix = Mix.new
-    2.times { @mix.videos.build }
+    base_mix = Mix.find_by(slug: params[:slug])
+    if base_mix.present?
+      @mix = Mix.new({ name: base_mix.name,
+                       videos_attributes: base_mix.videos.map { { url: _1.url, volume: _1.volume } } })
+    else
+      @mix = Mix.new
+      2.times { @mix.videos.build }
+    end
   end
 
   def index
@@ -10,8 +16,7 @@ class MixesController < ApplicationController
   end
 
   def show
-    @mix = Mix.includes(:videos).find_by(slug: params[:slug])
-    return not_found if @mix.blank?
+    @mix = Mix.includes(:videos).find_by!(slug: params[:slug])
   end
 
   def create
@@ -27,6 +32,6 @@ class MixesController < ApplicationController
   private
 
   def mix_params
-    params.require(:mix).permit(videos_attributes: [:url, :volume])
+    params.require(:mix).permit(:name, videos_attributes: [:url, :volume])
   end
 end

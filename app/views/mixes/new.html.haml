@@ -6,6 +6,9 @@ new mix
 
 = form_with model: @mix do |form|
   %ul
+    = form.label :name
+    = form.text_field :name
+
     = form.fields_for :videos do |videos_form|
       %li
         Video

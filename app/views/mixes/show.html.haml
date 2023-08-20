@@ -5,8 +5,7 @@
 
 = render partial: 'partials/nav'
 
-= @mix.id
-= @mix.slug
+%h1.mt-16.text-center.text-2xl.font-bold= @mix.name
 
 .mt-10.flex.justify-center.items-center.gap-5.flex-wrap
   - @mix.videos.each do |video|
@@ -14,3 +13,7 @@
       = video.yt_video_id
       = video.volume
       %div{id: "player-#{video.yt_video_id}"}
+
+.mt-10.text-center
+  %a{href: new_mix_path(slug: @mix.slug)} Create a new mix
+  based on this one
