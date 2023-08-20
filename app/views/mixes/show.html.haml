@@ -3,6 +3,8 @@
   :javascript
     window.cfg = { videos: #{@mix.videos.to_json} }
 
+= render partial: 'partials/nav'
+
 = @mix.id
 = @mix.slug
 

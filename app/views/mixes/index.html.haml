@@ -1,4 +1,4 @@
-.flex.flex-col.items-center
+.mt-20.flex.flex-col.items-center
   %h1.font-bold.text-5xl.text-center{class: 'max-w-[800px]'}
     Mix YouTube tracks for the perfect ambience
   %h2.mt-6.text-2xl.text-center.leading-tight{class: 'max-w-[550px]'}
@@ -10,7 +10,7 @@
     %li 🌴&nbsp;&nbsp;Set a focus playlist in a thunderstorm
     %li 🔥&nbsp;&nbsp;Combine a lo-fi playlist with a crackling fireplace
 
-  %h3.mt-20.text-3xl.font-bold.text-center Popular mixes
+  %h3#popular.mt-20.text-3xl.font-bold.text-center Popular mixes
   %ul.mt-10.flex.flex-col.gap-2
     - @mixes.each do |mix|
       %li
