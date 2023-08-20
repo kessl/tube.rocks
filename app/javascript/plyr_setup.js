@@ -23,20 +23,15 @@ export const createIframes = (videos) => {
 
 export const createPlayers = (videos) =>
   videos.map(video => {
-    console.log(video)
     const player = new Plyr(video.element, {
       controls: [
         'play-large', // The large play button in the center
-        'restart', // Restart playback
-        'rewind', // Rewind by the seek time (default 10 seconds)
         'play', // Play/pause playback
-        'fast-forward', // Fast forward by the seek time (default 10 seconds)
         'progress', // The progress bar and scrubber for playback and buffering
         'current-time', // The current time of playback
         'duration', // The full duration of the media
         'volume', // Volume control
         'captions', // Toggle captions
-        'settings', // Settings menu
       ],
     })
     return {
@@ -67,6 +62,9 @@ window.addEventListener('load', function() {
         if (video.id === otherVideo.id) continue
         otherVideo.player.pause()
       }
+    })
+    player.on('ended', function(event) {
+      player.restart()
     })
   }
 })
