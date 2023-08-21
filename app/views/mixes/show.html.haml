@@ -1,7 +1,5 @@
 - content_for :head do
   = javascript_import_module_tag 'plyr_setup'
-  :javascript
-    window.cfg = { videos: #{@mix.videos.to_json} }
 
 = render partial: 'partials/nav'
 
@@ -9,10 +7,7 @@
 
 .mt-10.flex.justify-center.items-center.gap-5.flex-wrap
   - @mix.videos.each do |video|
-    %div{class: 'w-[500px]'}
-      = video.yt_video_id
-      = video.volume
-      %div{id: "player-#{video.yt_video_id}"}
+    = render partial: 'partials/video', locals: { video: video }
 
 .mt-10.text-center
   %a{href: new_mix_path(slug: @mix.slug)} Create a new mix

@@ -2,68 +2,59 @@ import Plyr from 'plyr'
 
 const youtubeIframeUrl = (source) => `https://www.youtube.com/embed/${source}?origin=https://plyr.io&amp;iv_load_policy=3&amp;modestbranding=1&amp;playsinline=1&amp;showinfo=0&amp;rel=0&amp;enablejsapi=1`
 
-export const createIframes = (videos) => {
-  return videos.map(video => {
-    const iframe = document.createElement('iframe')
-    iframe.src = youtubeIframeUrl(video.yt_video_id)
+function createPlayer(target) {
+  const ytVideoId = target.dataset.ytVideoId
+  const iframe = document.createElement('iframe')
+  iframe.src = youtubeIframeUrl(ytVideoId)
 
-    const wrapper = document.createElement('div')
-    wrapper.classList.add('player', 'plyr__video-embed')
-    wrapper.dataset.yt_video_id = video.yt_video_id
-    wrapper.appendChild(iframe)
+  const wrapper = document.createElement('div')
+  wrapper.classList.add('player', 'plyr__video-embed')
+  wrapper.appendChild(iframe)
 
-    const target = document.querySelector(`#player-${video.yt_video_id}`)
-    target.appendChild(wrapper)
-    return {
-      ...video,
-      element: wrapper,
-    }
+  target.appendChild(wrapper)
+  const player = new Plyr(wrapper, {
+    controls: [
+      'play-large', // The large play button in the center
+      'play', // Play/pause playback
+      'progress', // The progress bar and scrubber for playback and buffering
+      'current-time', // The current time of playback
+      'duration', // The full duration of the media
+      'captions', // Toggle captions
+    ],
   })
+  player.on('ready', () => {
+    const volume = Number(target.dataset.volume)
+    player.volume = volume / 100.0
+  })
+  player.on('ended', () => {
+    player.restart()
+  })
+  return player
 }
 
-export const createPlayers = (videos) =>
-  videos.map(video => {
-    const player = new Plyr(video.element, {
-      controls: [
-        'play-large', // The large play button in the center
-        'play', // Play/pause playback
-        'progress', // The progress bar and scrubber for playback and buffering
-        'current-time', // The current time of playback
-        'duration', // The full duration of the media
-        'captions', // Toggle captions
-      ],
-    })
-    return {
-      ...video,
-      player,
-    }
-  }
-)
-
-window.addEventListener('load', function() {
-  const videos = createPlayers(createIframes(window.cfg.videos))
-
-  for (const video of videos) {
-    const player = video.player
-    player.on('ready', function(event) {
-      player.volume = video.volume / 100.0
-    })
-    player.on('playing', function(event) {
+function syncPlayback(players) {
+  players.forEach(player => {
+    player.on('playing', () => {
       if (videos.some(video => video.player.loading)) return
-
       for (const otherVideo of videos) {
         if (video.id === otherVideo.id) continue
         otherVideo.player.play()
       }
     })
-    player.on('pause', function(event) {
+    player.on('pause', () => {
       for (const otherVideo of videos) {
         if (video.id === otherVideo.id) continue
         otherVideo.player.pause()
       }
     })
-    player.on('ended', function(event) {
-      player.restart()
-    })
-  }
-})
+  })
+}
+
+function initPlayers() {
+  const targets = document.querySelectorAll('[data-yt-video-id]')
+  const players = [...targets].map(createPlayer)
+  syncPlayback(players)
+}
+
+window.addEventListener('load', initPlayers)
+window.initPlayers = initPlayers
