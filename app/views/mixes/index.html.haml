@@ -19,8 +19,4 @@
     - @mixes.each do |mix|
       %li
         %a{href: mix_path(slug: mix.slug)}
-          = mix.id
-          = mix.slug
-          - mix.videos.each do |video|
-            = video.yt_video_id
-
+          #{mix.id} #{mix.name} (#{mix.videos.count})
