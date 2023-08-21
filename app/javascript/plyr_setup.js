@@ -35,16 +35,16 @@ function createPlayer(target) {
 function syncPlayback(players) {
   players.forEach(player => {
     player.on('playing', () => {
-      if (videos.some(video => video.player.loading)) return
-      for (const otherVideo of videos) {
-        if (video.id === otherVideo.id) continue
-        otherVideo.player.play()
+      if (players.some(player => player.loading)) return
+      for (const otherPlayer of players) {
+        if (player === otherPlayer) continue
+        otherPlayer.play()
       }
     })
     player.on('pause', () => {
-      for (const otherVideo of videos) {
-        if (video.id === otherVideo.id) continue
-        otherVideo.player.pause()
+      for (const otherPlayer of players) {
+        if (player === otherPlayer) continue
+        otherPlayer.pause()
       }
     })
   })
