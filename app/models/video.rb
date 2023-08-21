@@ -8,5 +8,7 @@ class Video < ApplicationRecord
 
   before_validation do
     self.yt_video_id = CGI::parse(URI::parse(url).query || '')['v'].first
+  rescue URI::InvalidURIError
+    self.errors.add(:url, 'Please enter a valid URL')
   end
 end

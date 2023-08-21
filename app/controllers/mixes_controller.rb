@@ -7,7 +7,6 @@ class MixesController < ApplicationController
                        videos_attributes: base_mix.videos.map { { url: _1.url, volume: _1.volume } } })
     else
       @mix = Mix.new
-      2.times { @mix.videos.build if @mix.videos.count < 2 }
     end
   end
 
@@ -25,7 +24,7 @@ class MixesController < ApplicationController
     if @mix.save
       redirect_to mix_path(slug: @mix.slug), notice: "Mix was successfully created."
     else
-      @errors = @mix.errors.to_hash[:'videos.yt_video_id'] + @mix.errors.full_messages_for(:name)
+      @errors = (@mix.errors.to_hash[:'videos.yt_video_id'] || []) + @mix.errors.full_messages_for(:name)
       render :new, status: :unprocessable_entity
     end
   end

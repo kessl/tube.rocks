@@ -8,20 +8,4 @@
 
 %h1.mt-16.text-center.text-2xl.font-bold Create new mix
 
-= form_with model: @mix do |form|
-  .mt-10.mx-auto{class: 'w-[1020px]'}
-    = form.label :name, 'Name your mix', class: 'mr-5'
-    = form.text_field :name
-
-  .mt-10.flex.justify-center.items-center.gap-5.flex-wrap
-    = form.fields_for :videos do |videos_form|
-      .flex.justify-center.items-center.border-dashed.border-4.border-gray-200{class: 'w-[500px] h-[281.25px]'}
-        .mt-5.flex.flex-col.items-center.gap-5
-          = videos_form.text_field :url, placeholder: 'YouTube video URL', 'aria-label': 'YouTube video URL'
-          -# .mt-3
-          -# = videos_form.range_field :volume, from: 1, to: 100, 'aria-label': 'Video volume'
-          %a.button.leading-5.border-4.border-gray-300.bg-gray-200.hover:border-gray-400.hover:bg-gray-300.transition
-            + Add video
-
-  .mt-10.flex.justify-center.items-center
-    = form.submit 'Create mix', class: 'button border-4 border-green-300 text-xl bg-green-500 text-white hover:border-green-400 hover:bg-green-600 transition'
+= render partial: 'partials/videos_form'
