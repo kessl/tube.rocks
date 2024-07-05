@@ -5,13 +5,6 @@
 
     -# add play button
 
-    .js-video-template.flex.justify-center.items-center.border-dashed.border-4.border-gray-200{class: 'w-[500px] h-[281.25px]'}
-      .mt-5.flex.items-center.gap-5
-        = label_tag :url, 'URL'
-        = text_field_tag :url, placeholder: 'YouTube video URL', 'aria-label': 'YouTube video URL'
-        %a.button.leading-5.border-4.border-gray-300.bg-gray-200.hover:border-gray-400.hover:bg-gray-300.transition
-          Add
-
     .mt-10.flex.items-center.gap-5.flex-wrap
       = form.fields_for :videos do |videos_form|
         .flex.justify-center.items-center.border-dashed.border-4.border-gray-200{class: 'w-[500px] h-[281.25px]'}
@@ -22,11 +15,10 @@
             %a.button.leading-5.border-4.border-gray-300.bg-gray-200.hover:border-gray-400.hover:bg-gray-300.transition
               Add
 
-      %a.group.no-underline.flex.justify-center.items-center.border-dashed.border-4.border-gray-200{href: '#', class: 'w-[500px] h-[281.25px] hover:bg-gray-100/50'}
-        .mt-5.flex.flex-col.items-center.gap-5
-          .button.leading-5.border-4.border-gray-200.bg-gray-100.group-hover:border-gray-300.group-hover:bg-gray-200.transition
-            -# TODO
-            + Add another video
+    .mt-10.flex.justify-center
+      .button.leading-5.border-4.border-gray-200.bg-gray-100.group-hover:border-gray-300.group-hover:bg-gray-200.transition
+        -# TODO
+        + Add another video
 
   .mt-10.flex.justify-center.items-center
     = form.submit 'Create mix', class: 'button border-4 border-green-300 text-xl bg-green-500 text-white hover:border-green-400 hover:bg-green-600 transition'
