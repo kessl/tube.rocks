@@ -10,5 +10,4 @@
     = render partial: 'partials/video', locals: { video: video }
 
 .mt-10.text-center
-  %a{href: new_mix_path(slug: @mix.slug)} Create a new mix
-  based on this one
+  %a{href: new_mix_path(from: @mix.slug)} Create a new mix based on this one

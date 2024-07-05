@@ -1,15 +1,4 @@
 class MixesController < ApplicationController
-
-  def new
-    base_mix = Mix.find_by(slug: params[:slug])
-    if base_mix.present?
-      @mix = Mix.new({ name: base_mix.name,
-                       videos_attributes: base_mix.videos.map { { url: _1.url, volume: _1.volume } } })
-    else
-      @mix = Mix.new
-    end
-  end
-
   def index
     @mixes = Mix.all
   end
@@ -18,14 +7,36 @@ class MixesController < ApplicationController
     @mix = Mix.includes(:videos).find_by!(slug: params[:slug])
   end
 
-  def create
-    @mix = Mix.new(mix_params)
+  def new
+    base_mix = Mix.includes(:videos).find_by(slug: params[:slug])
+    if base_mix.present?
+      @mix = Mix.new({ name: base_mix.name,
+                                videos_attributes: base_mix.videos.map { { url: _1.url, volume: _1.volume } } })
+    else
+      @mix = Mix.new
+    end
+  end
 
-    if @mix.save
-      redirect_to mix_path(slug: @mix.slug), notice: "Mix was successfully created."
+  def create
+    base_mix = Mix.find_by(slug: params[:from])
+    if base_mix.present?
+      @mix = Mix.create!({ name: base_mix.name,
+                           videos_attributes: base_mix.videos.map { { url: _1.url, volume: _1.volume } } })
+    else
+      @mix = Mix.create!
+      @mix.videos.build
+      @mix.videos.build
+    end
+    redirect_to mix_path(slug: @mix.slug)
+  end
+
+  def update
+    @mix = Mix.includes(:videos).find_by!(slug: params[:slug])
+    if @mix.update!(mix_params)
+      redirect_to mix_path(slug: @mix.slug), notice: "You successfully created a mix!"
     else
       @errors = (@mix.errors.to_hash[:'videos.yt_video_id'] || []) + @mix.errors.full_messages_for(:name)
-      render :new, status: :unprocessable_entity
+      redirect_to mix_path(slug: @mix.slug)
     end
   end
 
