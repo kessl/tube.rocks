@@ -1,7 +1,7 @@
 class Video < ApplicationRecord
   include ActionView::Helpers
 
-  belongs_to :mix
+  belongs_to :mix, optional: true
 
   validates :url, presence: true
   validates :yt_video_id, presence: { message: 'Please provide a valid URL to a YouTube video' }

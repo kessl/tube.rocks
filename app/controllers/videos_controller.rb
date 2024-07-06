@@ -1,17 +1,14 @@
 class VideosController < ApplicationController
+  layout false
 
-  def create
-    @video = Mix.find!(slug: params[:mix_slug]).videos.create!(video_params)
-  end
-
-  def destroy
-    Video.find(params[:id]).destroy!
-    head :ok
+  def new
+    @video = Video.new(video_params)
+    @video.valid?
   end
 
   private
 
   def video_params
-    params.require(:video).permit(:url, :volume)
+    params.permit(:url, :volume)
   end
 end
