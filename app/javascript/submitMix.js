@@ -4,8 +4,14 @@ window.addEventListener('DOMContentLoaded', function() {
 
 async function submitMix(event) {
   event.preventDefault()
-  await window.initPlayers()
   const videosContainer = document.querySelector('.js-videos-container')
+  const form = videosContainer.closest('form')
+  if (!form.checkValidity()) {
+    form.reportValidity()
+    return
+  }
+
+  await window.initPlayers()
   Object.entries(window.getVolumes()).forEach(([videoId, volume]) => {
     const videoElement = document.querySelector(`[data-yt-video-id='${videoId}']`).closest('.js-video')
     const videoIndex = Array.prototype.indexOf.call(videosContainer.children, videoElement)
@@ -15,6 +21,6 @@ async function submitMix(event) {
     volumeInput.value = volume
     videoElement.appendChild(volumeInput)
   })
-  const form = videosContainer.closest('form')
+
   form.submit()
 }
