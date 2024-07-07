@@ -1,6 +1,6 @@
 class MixesController < ApplicationController
   def index
-    @mixes = Mix.all
+    @most_played = Mix.limit(10)
   end
 
   def show

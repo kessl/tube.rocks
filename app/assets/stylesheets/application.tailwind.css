@@ -13,8 +13,11 @@
     @apply block px-5 py-2 no-underline drop-shadow-lg hover:drop-shadow transition;
   }
 
-  .heading {
-    @apply font-display;
+  .text-shadow-lightblue {
+    text-shadow: 3px 3px lightblue;
+  }
+
+  .text-shadow-orangered {
     text-shadow: 3px 3px orangered;
   }
 }

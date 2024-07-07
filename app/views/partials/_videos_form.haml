@@ -1,28 +1,26 @@
 = form_with model: @mix do |form|
-  .mt-10.mx-auto{class: 'w-[1020px]'}
-    = form.label :name, 'Name your mix', class: 'mr-5'
-    = form.text_field :name
-
-    -# add play button
-
-    .mt-10.flex.items-center.gap-5.flex-wrap
-      = form.fields_for :videos do |videos_form|
-        .flex.justify-center.items-center.border-dashed.border-4.border-gray-200{class: 'w-[500px] h-[281.25px]'}
-          .hx-video-fields.mt-5.flex.items-center.gap-5
-            = videos_form.label :url, 'URL'
+  .mt-10.flex.flex-col.items-center.gap-5
+    %div
+      = form.label :name, 'Name your mix', class: 'mr-5'
+      = form.text_field :name
+    = form.fields_for :videos do |videos_form|
+      .mt-5.flex.flex-col.justify-center.items-center.gap-5.border-dashed.border-4.border-gray-200{class: 'w-[500px] h-[281px]'}
+        .hx-hide.text-xl.font-display.text-center.text-shadow-lightblue Enter video URL or ID
+        .flex.justify-center.items-center.gap-4
+          .hx-hide.flex.items-center.gap-5
             = videos_form.text_field :url, class: 'hx-url', placeholder: 'YouTube video URL', 'aria-label': 'YouTube video URL'
-          %a.button.leading-5.border-4.border-gray-300.bg-gray-200.hover:border-gray-400.hover:bg-gray-300.transition{
+          %button.button.leading-5.border-4.border-gray-300.bg-gray-200.hover:border-gray-400.hover:bg-gray-300.transition{
             'hx-get': new_video_path,
             'hx-vals': "js:{url: event.target.parentElement.querySelector('.hx-url').value}",
             'hx-swap': 'outerHTML',
-            'hx-on:htmx:before-swap': "console.log(event); event.target.parentElement.querySelector('.hx-video-fields').classList.add('hidden')"
+            'hx-on:htmx:before-swap': "event.target.parentElement.parentElement.querySelectorAll('.hx-hide').forEach(el => el.classList.add('hidden'))"
           } Add
 
-    .mt-10.flex.justify-center
-      .button.leading-5.border-4.border-gray-200.bg-gray-100.group-hover:border-gray-300.group-hover:bg-gray-200.transition
-        -# TODO
-        + Add another video
+  .mt-10.flex.justify-center
+    %button.button.leading-5.border-4.border-gray-200.bg-gray-100.group-hover:border-gray-300.group-hover:bg-gray-200
+      -# TODO
+      + Add another video
 
-  .mt-10.flex.justify-center.items-center
-    = form.submit 'Create mix', class: 'button border-4 border-green-300 text-xl bg-green-500 text-white hover:border-green-400 hover:bg-green-600 transition'
+  .my-10.flex.justify-center.items-center
+    = form.button 'Create mix', class: 'button border-4 border-green-300 text-xl bg-green-500 text-white hover:border-green-400 hover:bg-green-600 transition'
 
