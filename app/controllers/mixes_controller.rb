@@ -6,6 +6,7 @@ class MixesController < ApplicationController
 
   def show
     @mix = Mix.includes(:videos).find_by!(slug: params[:slug])
+    expires_in 1.hour, public: true
   end
 
   def random
