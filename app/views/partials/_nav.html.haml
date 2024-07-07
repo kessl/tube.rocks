@@ -1,6 +1,8 @@
-.p-8.flex.justify-center.items-center.gap-3
-  %a{href: root_path} home
+.p-6.flex.justify-center.items-center.gap-1
+  %a.p-2.no-underline{href: root_path}
+    %span.underline home
+    🪨
   &middot;
-  %a{href: root_path(anchor: 'popular')} explore mixes
+  %a.p-2{href: root_path(anchor: 'popular')} explore mixes
   &middot;
-  %a{href: new_mix_path} create mix
+  %a.p-2{href: new_mix_path} create mix

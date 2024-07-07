@@ -1,7 +1,7 @@
 = form_with model: @mix do |form|
   .mt-10.flex.flex-col.items-center.gap-5
     .mb-6
-      = form.label :name, 'Name the mix', class: 'mr-5'
+      = form.label :name, 'Name the mix', class: 'mr-3'
       = form.text_field :name, required: true
     = form.fields_for :videos do |videos_form|
       .js-video.mt-5.flex.flex-col.justify-center.items-center.gap-5.border-dashed.border-4.border-gray-200{class: "w-[500px] h-[281px] #{'hidden' if videos_form.options[:child_index] > 1}"}
