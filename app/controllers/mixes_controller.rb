@@ -1,6 +1,7 @@
 class MixesController < ApplicationController
   def index
     @most_played = Mix.includes(:videos).order(play_count: :desc).limit(10)
+    expires_in 5.minutes, public: true
   end
 
   def show
