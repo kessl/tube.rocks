@@ -8,7 +8,7 @@
   }
 
   input {
-    @apply h-10 relative !border-2 !border-black focus-visible:bg-[lightcyan];;
+    @apply h-10 relative !border-2 !border-black focus-visible:bg-[lightcyan] transition-all;
     box-shadow: 0.25rem 0.25rem rgba(0, 0, 0, 0.3);
   }
 
