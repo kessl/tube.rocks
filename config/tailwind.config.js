@@ -13,6 +13,9 @@ module.exports = {
         sans: ['Inter var', ...defaultTheme.fontFamily.sans],
         display: ['IBM_VGA8', 'monospace'],
       },
+      transitionDuration: {
+        DEFAULT: '80ms',
+      },
     },
   },
   plugins: [

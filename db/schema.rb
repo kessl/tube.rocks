@@ -10,12 +10,13 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_08_20_065250) do
+ActiveRecord::Schema[7.0].define(version: 2024_07_07_133819) do
   create_table "mixes", force: :cascade do |t|
     t.string "slug", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "name", null: false
+    t.integer "play_count", default: 0, null: false
   end
 
   create_table "videos", force: :cascade do |t|

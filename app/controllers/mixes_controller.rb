@@ -1,6 +1,6 @@
 class MixesController < ApplicationController
   def index
-    @most_played = Mix.limit(10)
+    @most_played = Mix.includes(:videos).order(play_count: :desc).limit(10)
   end
 
   def show
@@ -38,6 +38,12 @@ class MixesController < ApplicationController
       @errors = (@mix.errors.to_hash[:'videos.yt_video_id'] || []) + @mix.errors.full_messages_for(:name)
       redirect_to mix_path(slug: @mix.slug)
     end
+  end
+
+  def play
+    mix = Mix.find_by(slug: params[:slug])
+    mix.increment!(:play_count)
+    head :no_content
   end
 
   private
