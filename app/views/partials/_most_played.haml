@@ -1,7 +1,7 @@
 %h3#popular.mt-20.text-3xl.font-bold.text-center Most played mixes
 .mt-8.w-full
   - @most_played.each do |mix|
-    %a.px-32.py-2.no-underline.flex.even:bg-gray-50.hover:bg-gray-100.transition{href: mix_path(slug: mix.slug)}
+    %a.px-32.py-2.no-underline.flex.even:bg-gray-50.hover:bg-gray-100.transition.duration-100{href: mix_path(slug: mix.slug)}
       .pl-2.flex.items-center.gap-1{class: 'w-[116px]'}
         - mix.videos.take(2).each do |video|
           %img.w-8.h-5{src: "https://img.youtube.com/vi/#{video.yt_video_id}/0.jpg"}

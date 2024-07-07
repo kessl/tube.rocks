@@ -1,5 +1,5 @@
 .py-16.flex.flex-col.items-center
-  %h1.font-display.font-bold.text-center.text-shadow-orangered
+  %h1.font-display.font-bold.text-center{style: 'text-shadow: 4px 4px orangered'}
     %span.text-9xl
       t
       %spam{class: 'tracking-[-7px]'}> u
@@ -12,7 +12,7 @@
       %span.relative.-top-1{class: 'text-[60px]'} 🪨
   %h2.mt-2.text-3xl.font-medium.text-center
     Mix YouTube tracks for the perfect ambience
-  .mt-10.w-full.border-y.border-black
+  .mt-16.w-full.border-t-2.border-black
     .p-10.flex.justify-center.gap-10
       .flex-1
         %h3.font-medium
@@ -22,15 +22,15 @@
         %ul.mt-4.flex.flex-col.text-sm.opacity-70.gap-2
           %li 🌧️&nbsp;&nbsp;Add rain sounds to your favorite ambient track
           %li 🔥&nbsp;&nbsp;Combine a lo-fi playlist with a crackling fireplace
-          %li 🔂&nbsp;&nbsp;Loop and/or autoplay
+          %li 🔂&nbsp;&nbsp;Loop videos
       .flex-1.flex.flex-col.justify-center
         -# %h4.font-display.text-xl.text-center Now with a pomodoro timer! 🍅🍅
         -# %ul.mt-6.ml-10.flex.flex-col.text-sm.opacity-70.gap-2
         -#   %li ⏰️&nbsp;&nbsp;Set pomodoro & break interval length
         -#   %li ⏯️️&nbsp;&nbsp;Pause all or some videos on break
 
-  .w-full.border-b.border-black.p-8.flex.flex-col.items-center
-    %a.mt-5.button.border-4.text-2xl.font-display{href: new_mix_path, class: 'bg-[chartreuse] border-[forestgreen]'}
+  .w-full.pb-12.px-8.border-b-2.border-black.flex.flex-col.items-center
+    %a.button.cta-button.px-5.py-3.text-2xl.font-display{href: new_mix_path, class: 'border-[black]'}
       %span.relative{class: 'top-[2px]'} Create your mix
     .mt-3.opacity-60
       or
