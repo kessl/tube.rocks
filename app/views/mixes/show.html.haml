@@ -1,10 +1,9 @@
 = render partial: 'partials/nav'
 
 %h1.mt-16.text-center.text-2xl.font-bold= @mix.name
+.mt-6.text-center.text-sm.text-gray-500
+  %a{href: new_mix_path(from: @mix.slug)} Create a new mix based on this one
 
 .mt-10.flex.justify-center.items-center.gap-5.flex-wrap
   - @mix.videos.each do |video|
     = render partial: 'partials/video', locals: { video: video }
-
-.mt-10.text-center
-  %a{href: new_mix_path(from: @mix.slug)} Create a new mix based on this one

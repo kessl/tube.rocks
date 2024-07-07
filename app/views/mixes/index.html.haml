@@ -1,22 +1,41 @@
-.mt-20.flex.flex-col.items-center
-  %h1.font-bold.text-5xl.text-center{class: 'max-w-[800px]'}
+.py-16.flex.flex-col.items-center
+  %h1.heading.font-bold.text-center
+    %span.text-9xl
+      t
+      %spam{class: 'tracking-[-7px]'}> u
+      b
+      %spam{class: 'tracking-[-20px]'}> e
+      %span{class: 'tracking-[-10px]'}> .
+      %span> rocks
+    %span.ml-4.inline-flex.align-super.relative.-top-px{class: 'gap-[6px]'}>
+      %span{class: 'text-[52px]'} ▶️
+      %span.relative.-top-1{class: 'text-[55px]'} 🪨
+  %h2.mt-2.text-3xl.font-medium.text-center
     Mix YouTube tracks for the perfect ambience
-    -# Create ambient mixes from YouTube videos
-  %h2.mt-6.text-2xl.text-center.leading-tight{class: 'max-w-[550px]'}
-    Play multiple YouTube videos simultaneously and get the mood exactly right.
-  %a.mt-10.button.border-4.border-green-300.text-xl.bg-green-500.text-white.hover:border-green-400.hover:bg-green-600.transition{href: new_mix_path}
-    Create a mix
-  .mt-3.opacity-60
-    or
-    %a{href: root_path(anchor: 'popular')} explore popular mixes
-  %ul.mt-10.flex.flex-col.text-sm.opacity-70.gap-2
-    %li 🌧️&nbsp;&nbsp;Add rain sounds to your favorite ambient track
-    %li 🔥&nbsp;&nbsp;Combine a lo-fi playlist with a crackling fireplace
-    %li 🌴&nbsp;&nbsp;Listen to your favorite focus playlist in a thunderstorm
+  .mt-10.w-full.border-y.border-black
+    .p-10.flex.justify-center.gap-10
+      .flex-1
+        %h3.font-medium
+          Play multiple YouTube videos at the same time
+          %br
+          and get the mood exactly right.
+        %ul.mt-4.flex.flex-col.text-sm.opacity-70.gap-2
+          %li 🌧️&nbsp;&nbsp;Add rain sounds to your favorite ambient track
+          %li 🔥&nbsp;&nbsp;Combine a lo-fi playlist with a crackling fireplace
+          %li 🔂&nbsp;&nbsp;Loop and/or autoplay
+      .flex-1.flex.flex-col.justify-center
+        %h4.font-display.text-xl.text-center Now with a pomodoro timer! 🍅🍅
+        %ul.mt-6.ml-10.flex.flex-col.text-sm.opacity-70.gap-2
+          %li ⏰️&nbsp;&nbsp;Set pomodoro & break interval length
+          %li ⏯️️&nbsp;&nbsp;Pause all or some videos on break
 
-  %h3#popular.mt-20.text-3xl.font-bold.text-center Explore popular mixes
-  %ul.mt-10.flex.flex-col.gap-2
-    - @mixes.each do |mix|
-      %li
-        %a{href: mix_path(slug: mix.slug)}
-          #{mix.id} #{mix.name} (#{mix.videos.count})
+  .w-full.border-b.border-black.p-8.flex.flex-col.items-center
+    %a.mt-5.button.border-4.text-2xl.font-display{href: new_mix_path, class: 'bg-[chartreuse] border-[forestgreen]'}
+      %span.relative{class: 'top-[2px]'} Create your mix
+    .mt-3.opacity-60
+      or
+      %a.no-underline{href: root_path(anchor: 'popular')}
+        %span.underline explore popular mixes
+        %span.align-text-top &darr;
+
+  = render partial: 'partials/most_played'
