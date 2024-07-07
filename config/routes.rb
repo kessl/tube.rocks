@@ -3,6 +3,9 @@ Rails.application.routes.draw do
 
   root "mixes#index"
   resources :mixes, only: [:show, :new, :create, :edit, :update], param: :slug do
+    collection do
+      get '/random', action: :random, as: :random
+    end
     member do
       post '/play', action: :play
     end

@@ -8,6 +8,11 @@ class MixesController < ApplicationController
     @mix = Mix.includes(:videos).find_by!(slug: params[:slug])
   end
 
+  def random
+    most_played_slugs = Mix.order(play_count: :desc).limit(10).pluck(:slug)
+    redirect_to mix_path(slug: most_played_slugs.sample)
+  end
+
   def new
     base_mix = Mix.includes(:videos).find_by(slug: params[:from])
     if base_mix.present?

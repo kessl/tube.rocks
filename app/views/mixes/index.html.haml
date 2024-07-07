@@ -34,8 +34,6 @@
       %span.relative{class: 'top-[2px]'} Create your mix
     .mt-3.opacity-60
       or
-      %a.no-underline{href: root_path(anchor: 'popular')}
-        %span.underline explore popular mixes
-        %span.align-text-top &darr;
+      %a{href: random_mixes_path} show me a random mix
 
   = render partial: 'partials/most_played'
