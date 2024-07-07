@@ -13,10 +13,10 @@ class MixesController < ApplicationController
     if base_mix.present?
       @mix = Mix.new({ name: base_mix.name,
                                 videos_attributes: base_mix.videos.map { { url: _1.url, volume: _1.volume } } })
+      (5 - base_mix.videos.count).times { @mix.videos.build }
     else
       @mix = Mix.new
-      @mix.videos.build
-      @mix.videos.build
+      5.times { @mix.videos.build }
     end
   end
 

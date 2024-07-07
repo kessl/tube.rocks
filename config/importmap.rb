@@ -3,3 +3,4 @@
 pin "application", preload: true
 pin "player", preload: true
 pin "reportPlayback", preload: true
+pin "addVideo", preload: true

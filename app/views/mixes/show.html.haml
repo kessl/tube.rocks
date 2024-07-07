@@ -4,6 +4,6 @@
 .mt-6.text-center.text-sm.text-gray-500
   %a{href: new_mix_path(from: @mix.slug)} Create a new mix based on this one
 
-.mt-10.flex.justify-center.items-center.gap-5.flex-wrap{'data-mix': @mix.slug}
+.mt-10.mb-32.flex.justify-center.items-center.gap-5.flex-wrap{'data-mix': @mix.slug}
   - @mix.videos.each do |video|
     = render partial: 'partials/video', locals: { video: video }
