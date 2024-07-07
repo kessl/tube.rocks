@@ -13,7 +13,7 @@
             'hx-get': new_video_path,
             'hx-vals': "js:{url: event.target.parentElement.querySelector('.hx-url').value}",
             'hx-swap': 'outerHTML',
-            'hx-on:htmx:before-swap': "event.target.parentElement.parentElement.querySelectorAll('.hx-hide').forEach(el => el.classList.add('hidden'))"
+            'hx-on:htmx:before-swap': "event.target.parentElement.parentElement.querySelectorAll('.hx-hide').forEach(el => el.classList.add('hidden')); initPlayers()"
           } Add
 
   .mt-10.flex.justify-center

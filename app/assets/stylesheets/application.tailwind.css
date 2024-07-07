@@ -8,18 +8,23 @@
   }
 
   input {
-    @apply h-10 !border-2 !border-black;
+    @apply h-10 relative !border-2 !border-black focus-visible:bg-[lightcyan];;
     box-shadow: 0.25rem 0.25rem rgba(0, 0, 0, 0.3);
+  }
+
+  input:focus {
+    @apply top-px left-px;
+    box-shadow: 0.2rem 0.2rem rgba(0, 0, 0, 0.4) !important;
   }
 }
 
 @layer components {
   .button {
-    @apply block relative no-underline transition-all;
+    @apply block relative no-underline transition-all focus-visible:bg-[lightcyan] outline-none;
     box-shadow: 0.25rem 0.25rem rgba(0, 0, 0, 0.3);
   }
 
-  .button:hover {
+  .button:hover, button:focus {
     @apply top-px left-px;
     box-shadow: 0.2rem 0.2rem rgba(0, 0, 0, 0.4);
   }
@@ -29,7 +34,7 @@
     box-shadow: 0.25rem 0.25rem orangered;
   }
 
-  .cta-button:hover {
+  .cta-button:hover, .cta-button:focus {
     box-shadow: 0.2rem 0.2rem crimson;
   }
 }
